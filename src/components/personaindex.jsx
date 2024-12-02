@@ -1,18 +1,59 @@
-import Item from "./item";
-import Grid from '@mui/material/Grid2';
-import { Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Box, Typography, Paper } from '@mui/material';
 
-const Personaindex = () => {
-return (
-<Grid
-  container
-  direction="column"
-  
-><Item>
-<img src="https://picsum.photos/150/200"></img>
-<p sx={{ lineHeight: 1.5, display: 'flex',
-  alignItems: 'center' }}><b>Director Directorez</b><br></br>Director</p>
-</Item></Grid>
-)}
+const Personaindex = ({nombrepersona, puestopersona}) => {
+  return (
+   
+      <Grid item>
+        <Paper
+          elevation={3}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            // width: { xs: '200px', md: '250px' },
+            /* height: { xs: '300px', md: '350px' },*/
+            padding: 1,
+            backgroundColor: 'white',
+            borderRadius: '16px',
+          }}
+        >
+          <img
+            src="https://picsum.photos/150/200"
+            style={{
+              borderRadius: '8px',
+              marginBottom: '16px',
+              width: '100%',
+              maxWidth: '150px',
+              objectFit: 'cover',
+            }}
+          />
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                lineHeight: 1.2,
+                color: '#333',
+                fontSize: '0.8rem',
+              }}
+            >
+              <b>{nombrepersona}</b>
+              <br />
+              {puestopersona}
+            </Typography>
+          </Box>
+        </Paper>
+      </Grid>
+    
+  );
+};
 
-export default Personaindex; 
+export default Personaindex;

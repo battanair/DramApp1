@@ -9,6 +9,7 @@ const Categoriaobra = ({categoria1, categoria2, nota}) => {
             sx={{
                 justifyContent: "flex-end",
                 alignItems: "center",
+                marginBottom: 2
             }}
         >
             <Item>{categoria1}</Item>
@@ -19,5 +20,6 @@ const Categoriaobra = ({categoria1, categoria2, nota}) => {
 }
 
 export default Categoriaobra;
+
 
 
