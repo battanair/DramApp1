@@ -3,12 +3,12 @@ import Personaindex from './personaindex';
 import Button from '@mui/material/Button';
 
 const Elencoobra = () => {return(
-    <> <Grid container sx={{ paddingTop: 4, paddingBottom: 8 }} direction={'column'} ><h5><b>ELENCO</b></h5>
+    <> <Grid container sx={{ paddingTop: 4, paddingBottom: 8, textAlign: 'center' }} direction={'column'} ><h5><b>ELENCO</b></h5>
     <Grid
   container
   direction="row"
   sx={{
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     alignItems: "flex-start",
     marginTop: 3,
   }}

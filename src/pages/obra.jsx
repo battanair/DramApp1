@@ -3,15 +3,17 @@ import VideoLineObra from '../components/videolineobra';
 import Elencoobra from '../components/elencoobra';
 import Imagenesobra from '../components/imagenesobra';
 import Listapremiosobra from '../components/listapremiosobra';
+import { Obracriticalista } from '../components/obracriticalista';
 
 const Obra = () => {
     return(
         <>
         <HeaderObra />
-        <VideoLineObra container sx={{marginTop: 4}}/>
-        <Elencoobra container sx={{marginTop: 4}}/>
-        <Imagenesobra container sx={{marginTop: 4}}/>
-        <Listapremiosobra container sx={{marginTop: 4}}/>
+        <VideoLineObra />
+        <Elencoobra />
+        <Imagenesobra />
+        <Listapremiosobra />
+        <Obracriticalista />
         </>
 )}
 
