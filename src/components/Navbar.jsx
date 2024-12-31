@@ -18,7 +18,7 @@ export default function Navbar() {
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 , color: 'black'}}>
             <MenuIcon />
           </IconButton>
-          <NavLink to="/"><img src="./logoziater.png" alt="Logo" style={{ height: "60px", marginLeft: "10px" }} /></NavLink>
+          <NavLink to="/"><img src="../logoziater.png" alt="Logo" style={{ height: "60px", marginLeft: "10px" }} /></NavLink>
         </Toolbar>
       </AppBar>
     </Box>

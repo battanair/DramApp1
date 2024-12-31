@@ -1,7 +1,7 @@
       // Datos de obras
-      export const obras = [
+      export const obras_db = [
         {
-          id_obra: 2,
+          id_obra: 1,
                 nombre_obra: "La OTRA Fiesta",
                 etiquetas_obra: ["drama", "impro"],
                 nota_obra: 8,
@@ -17,7 +17,7 @@
                 etiquetas_obra: ["comedia", "opera"],
                 nota_obra: 6,
                 anio_obra: 2022,
-                sinopsis_obra: "Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero. Cuando hace un curso con el también uruguayo Sergio Blanco, este le recomienda que escriba sobre el acontecimiento más relevante de su infancia. En 1983, el gobierno socialista de Felipe González fletó un avión para que casi doscientos hijos de exiliados y presos políticos uruguayos viajaran a su país para pasar la Nochevieja con sus familias.",
+                sinopsis_obra: "TOMA Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero. Cuando hace un curso con el también uruguayo Sergio Blanco, este le recomienda que escriba sobre el acontecimiento más relevante de su infancia. En 1983, el gobierno socialista de Felipe González fletó un avión para que casi doscientos hijos de exiliados y presos políticos uruguayos viajaran a su país para pasar la Nochevieja con sus familias.",
                 video_obra: "https://www.youtube.com/embed/iwyiAHxZs7M?si=mq-U2bFnXzCVe72D",
                 poster_obra: "https://picsum.photos/200/300",
                 fotos_obra: ["https://picsum.photos/400/300?random=1", "https://picsum.photos/400/300?random=2", "https://picsum.photos/400/300?random=3", "https://picsum.photos/400/300?random=4","https://picsum.photos/400/300?random=5"],
@@ -86,7 +86,7 @@ export const getPersonaById = (id) =>
 
 // Función para obtener una obra por su ID
 export const getObraById = (id) =>
-  obras.find((obra) => obra.id_obra === id);
+  obras_db.find((obra) => obra.id_obra === id);
 
 // Función para obtener relaciones de una obra por su ID
 export const getRelacionesByObraId = (id) =>

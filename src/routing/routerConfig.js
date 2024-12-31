@@ -1,4 +1,3 @@
-import Obra from "../pages/obra";
 import Home from "../pages/home";
 import Persona from "../pages/persona"
 import Obra2 from "../pages/Obra2";
@@ -11,16 +10,12 @@ export const routeConfig = [
     page: <Home />,
   },{
     name: "Obra",
-    path: "/obra/",
-    page: <Obra />,
+    path: "/obra/:id",
+    page: <Obra2 />,
   },{
     name: "Persona",
     path: "/persona/",
     page: <Persona />,
-  },{
-    name: "Obra2",
-    path: "/obra2/:id",
-    page: <Obra2 />,
   },
  
 ];
