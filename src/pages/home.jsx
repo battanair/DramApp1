@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <>
             <p>Bienvenide a Ziater.com jejeje</p>
-            <NavLink to="/obra" style={{ marginRight: '10px', textDecoration: 'none', color: 'blue' }}>
+            <NavLink to="/obra/1" style={{ marginRight: '10px', textDecoration: 'none', color: 'blue' }}>
                 OBRA
             </NavLink>
             <NavLink to="/persona" style={{ textDecoration: 'none', color: 'blue' }}>
