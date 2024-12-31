@@ -11,7 +11,7 @@ const Obra = () => {
         <HeaderObra />
         <VideoLineObra />
         <Elencoobra />
-        <Imagenesobra />
+        <Imagenesobra imagen1="https://picsum.photos/400/300?random=1" imagen2="https://picsum.photos/400/300?random=2" imagen3="https://picsum.photos/400/300?random=3" imagen4="https://picsum.photos/400/300?random=4" imagen5="https://picsum.photos/400/300?random=5"/>
         <Listapremiosobra />
         <Obracriticalista />
         </>

@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 
-export const Premiosobra = () =>{return(
+export const Premiosobra = ({premio, year, condecoracion}) =>{return(
 
     <Paper
     elevation={3}
@@ -39,9 +39,9 @@ export const Premiosobra = () =>{return(
     fontSize: '0.8rem',
   }}
 >
-  <b>Premios MAX 2025</b>
+  <b>{premio} {year}</b>
   <br />
-  Mejor Autoría Teatral
+{condecoracion}
 </Typography>
         
       </Stack>

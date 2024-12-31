@@ -27,9 +27,9 @@ const Listapremiosobra = () => {
           paddingX: 2, // Margen horizontal en pantallas pequeñas
         }}
       >
-        <Premiosobra />
-        <Premiosobra />
-        <Premiosobra />
+        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría"/>
+        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría"/>
+        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría"/>
       </Stack>
     </Stack>
   );

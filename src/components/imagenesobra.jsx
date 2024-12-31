@@ -9,18 +9,16 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const Imagenesobra = () => {
+const Imagenesobra = ({imagen1, imagen2, imagen3, imagen4, imagen5}) => {
   const [open, setOpen] = useState(false); // Estado para el modal
   const [currentIndex, setCurrentIndex] = useState(0); // Índice de la imagen actual
 
   const images = [
-    "https://picsum.photos/400/300?random=1",
-    "https://picsum.photos/500/300?random=2",
-    "https://picsum.photos/300/300?random=3",
-    "https://picsum.photos/450/300?random=4",
-    "https://picsum.photos/350/300?random=5",
-    "https://picsum.photos/550/300?random=6",
-    "https://picsum.photos/600/300?random=7",
+    `${imagen1}`,
+    `${imagen2}`,
+    `${imagen3}`,
+    `${imagen4}`,
+    `${imagen5}`,
   ];
 
   const settings = {

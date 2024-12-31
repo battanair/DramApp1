@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import Categoriaobra from './indexobra'; // Asegúrate de que este componente esté importado correctamente
+import Categoriaobra from './indexobra'; 
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
