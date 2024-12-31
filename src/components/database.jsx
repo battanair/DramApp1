@@ -1,5 +1,5 @@
       // Datos de obras
-      export const obras_db = [
+      export const obras = [
         {
           id_obra: 2,
                 nombre_obra: "La OTRA Fiesta",
@@ -86,7 +86,7 @@ export const getPersonaById = (id) =>
 
 // Función para obtener una obra por su ID
 export const getObraById = (id) =>
-  obras_db.find((obra) => obra.id_obra === id);
+  obras.find((obra) => obra.id_obra === id);
 
 // Función para obtener relaciones de una obra por su ID
 export const getRelacionesByObraId = (id) =>

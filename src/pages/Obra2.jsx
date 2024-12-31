@@ -4,16 +4,21 @@ import { Typography } from '@mui/material';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
+import { useParams } from 'react-router';
+
 
 import Categoriaobra from '../components/indexobra';
 import Personaindex from '../components/personaindex';
 import Imagenesobra from '../components/imagenesobra';
 import { Premiosobra } from '../components/premiosobra';
 import { Obracriticas } from '../components/Obracriticas';
+
+import { obras } from '../components/database';  // Importamos las obras desde Database.jsx
+
 
 
 
@@ -63,6 +68,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 
 const Obra2 = () => {
 
+  const { id } = useParams();  // Capturamos el ID de la URL
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -80,14 +86,24 @@ const Obra2 = () => {
   };
 
   const [expanded, setExpanded] = useState(false);
+  const [obraData, setObraData] = useState(null);
 
   const toggleExpanded = () => {
     setExpanded((prev) => !prev);
   };
 
+  useEffect(() => {
+    const obra = obras.find((obra) => obra.id_obra.toString() === id);
+
+    console.log('Obra encontrada:', obra); // Verifica que obra se esté obteniendo correctamente
+    setObraData(obra);
+  }, [id]);
+
+
+
   return (
 
-    <><Grid container spacing={4}  sx={{ paddingTop: 4 }}>
+    <><Grid container spacing={4} sx={{ paddingTop: 4 }}>
       {/* Columna 1: Imagen */}
       <Grid item xs={12} md={4}>
         <Box sx={{ textAlign: 'center' }}>
@@ -103,17 +119,22 @@ const Obra2 = () => {
         {/* Componente Categoriaobra agregado encima del título con separación */}
         <div className="linea">
           <Rating name="half-rating" defaultValue={2} precision={1} />
-          <Categoriaobra categoria1="Teatro" categoria2="Comedia" nota="10" />
+          <Categoriaobra
+            categoria1={obraData ? obraData.etiquetas_obra[0] : ''}
+            categoria2={obraData ? obraData.etiquetas_obra[1] : ''}
+            nota={obraData ? obraData.nota_obra : ''}
+          />
         </div>
 
         {/* Título con el año en la misma línea */}
         <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1, marginBottom: 1 }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-            LA FIESTA DE LA DEMOCRACIA
+            {obraData ? obraData.nombre_obra : ''}
           </Typography>
           <Typography variant="h6" color="textSecondary" sx={{ fontSize: '1rem' }}>
-            (2024)
+            {obraData ? `(${obraData.anio_obra})` : ''}
           </Typography>
+
         </Box>
 
 
@@ -123,74 +144,74 @@ const Obra2 = () => {
         </Typography>
 
         <Typography variant="body2" paragraph>
-          
-            <>
-              Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer
-              estreno en la Sala Grande del Teatro María Guerrero. Cuando hace un curso con el también
-              uruguayo Sergio Blanco, este le recomienda que escriba sobre el acontecimiento más relevante
-              de su infancia. En 1983, el gobierno socialista de Felipe González fletó un avión para que
-              casi doscientos hijos de exiliados y presos políticos uruguayos viajaran a su país para pasar
-              la Nochevieja con sus familias.
-              
-    </>
+
+          <>
+            Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer
+            estreno en la Sala Grande del Teatro María Guerrero. Cuando hace un curso con el también
+            uruguayo Sergio Blanco, este le recomienda que escriba sobre el acontecimiento más relevante
+            de su infancia. En 1983, el gobierno socialista de Felipe González fletó un avión para que
+            casi doscientos hijos de exiliados y presos políticos uruguayos viajaran a su país para pasar
+            la Nochevieja con sus familias.
+
+          </>
         </Typography>
         <Button variant="contained" sx={{ background: 'black', marginBottom: '40px' }} onClick={handleOpen}><h6><b>COMPRAR ENTRADAS</b></h6>
         </Button>
       </Grid>
     </Grid>
 
-    <Box container sx={{marginTop: 4}}>
-       <h5><b>TEXTO Y DIRECCIÓN DE:</b></h5>
-      <Grid container spacing={2}>
-        {/* Columna 1: Personaindex alineado a la izquierda */}
-        <Grid item xs={12} md={6} container
-  direction="row"
-  sx={{
-    justifyContent: "flex-start",
-    alignItems: "center",
-  }}> 
-          <Grid
-      container
-      direction="row"
-      alignItems="center"
-      sx={{justifyContent: "flex-start"}}// Centra horizontalmente
-      spacing={2} // Espaciado entre elementos
-    >
-          <Personaindex nombrepersona={"Director Directorez"} puestopersona={"Director"} />
+      <Box container sx={{ marginTop: 4 }}>
+        <h5><b>TEXTO Y DIRECCIÓN DE:</b></h5>
+        <Grid container spacing={2}>
+          {/* Columna 1: Personaindex alineado a la izquierda */}
+          <Grid item xs={12} md={6} container
+            direction="row"
+            sx={{
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}>
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              sx={{ justifyContent: "flex-start" }}// Centra horizontalmente
+              spacing={2} // Espaciado entre elementos
+            >
+              <Personaindex nombrepersona={"Director Directorez"} puestopersona={"Director"} />
+            </Grid>
+          </Grid>
+
+          {/* Columna 2: Video con iframe */}
+          <Grid item xs={12} md={6}>
+            <Box sx={{
+              position: 'relative',
+              paddingTop: '56.25%', // Mantener proporción 16:9
+              overflow: 'hidden',
+              borderRadius: '8px',
+            }}>
+              <iframe
+                src="https://www.youtube.com/embed/iwyiAHxZs7M?si=mq-U2bFnXzCVe72D"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            </Box>
           </Grid>
         </Grid>
-        
-        {/* Columna 2: Video con iframe */}
-        <Grid item xs={12} md={6}>
-          <Box sx={{
-            position: 'relative',
-            paddingTop: '56.25%', // Mantener proporción 16:9
-            overflow: 'hidden',
-            borderRadius: '8px',
-          }}>
-            <iframe
-              src="https://www.youtube.com/embed/iwyiAHxZs7M?si=mq-U2bFnXzCVe72D"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-              }}
-            />
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
 
 
 
-    <Grid
+      <Grid
         container
         sx={{
           paddingTop: 4,
@@ -199,9 +220,9 @@ const Obra2 = () => {
         }}
         direction={'column'}
       >
-         <Typography variant="h5" component="h5" sx={{ fontWeight: "bold", textAlign: "center" }}>
-        CRÍTICAS
-      </Typography>
+        <Typography variant="h5" component="h5" sx={{ fontWeight: "bold", textAlign: "center" }}>
+          CRÍTICAS
+        </Typography>
 
         <Stack
           direction="row"
@@ -209,7 +230,7 @@ const Obra2 = () => {
           sx={{
             justifyContent: 'center',
             alignItems: 'center',
-            
+
           }}
         >
           <Typography>Original</Typography>
@@ -251,82 +272,82 @@ const Obra2 = () => {
           </Button>
         </Grid>
       </Grid>
-    
-      <Imagenesobra imagen1="https://picsum.photos/400/300?random=1" imagen2="https://picsum.photos/400/300?random=2" imagen3="https://picsum.photos/400/300?random=3" imagen4="https://picsum.photos/400/300?random=4" imagen5="https://picsum.photos/400/300?random=5"/>
+
+      <Imagenesobra imagen1="https://picsum.photos/400/300?random=1" imagen2="https://picsum.photos/400/300?random=2" imagen3="https://picsum.photos/400/300?random=3" imagen4="https://picsum.photos/400/300?random=4" imagen5="https://picsum.photos/400/300?random=5" />
 
 
       <Stack
-      direction="column"
-      spacing={4}
-      sx={{
-        justifyContent: "flex-start",
-        alignItems: "center",
-        paddingTop: 5,
-        paddingBottom: 5,
-      }}
-    >
-      <Typography variant="h5" component="h5" sx={{ fontWeight: "bold" }}>
-        PREMIOS
-      </Typography>
-
-      <Stack
-        direction={{ xs: "column", sm: "row" }} // Columnas en pantallas pequeñas, filas en grandes
-        spacing={2}
+        direction="column"
+        spacing={4}
         sx={{
-          justifyContent: { xs: "center", sm: "space-around" }, // Centrado en pequeñas
-          alignItems: "center", // Alineación vertical uniforme
-          width: "100%", // Asegura que ocupe todo el ancho disponible
-          paddingX: 2, // Margen horizontal en pantallas pequeñas
+          justifyContent: "flex-start",
+          alignItems: "center",
+          paddingTop: 5,
+          paddingBottom: 5,
         }}
       >
-        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría"/>
-        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría"/>
-        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría"/>
+        <Typography variant="h5" component="h5" sx={{ fontWeight: "bold" }}>
+          PREMIOS
+        </Typography>
+
+        <Stack
+          direction={{ xs: "column", sm: "row" }} // Columnas en pantallas pequeñas, filas en grandes
+          spacing={2}
+          sx={{
+            justifyContent: { xs: "center", sm: "space-around" }, // Centrado en pequeñas
+            alignItems: "center", // Alineación vertical uniforme
+            width: "100%", // Asegura que ocupe todo el ancho disponible
+            paddingX: 2, // Margen horizontal en pantallas pequeñas
+          }}
+        >
+          <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
+          <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
+          <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
+        </Stack>
       </Stack>
-    </Stack>
 
 
-    <Typography variant="h5" component="h5" sx={{ fontWeight: "bold", textAlign: "center" }}>
+      <Typography variant="h5" component="h5" sx={{ fontWeight: "bold", textAlign: "center" }}>
         CRÍTICAS
       </Typography>
-<Stack
-    direction={{ xs: 'column', sm: 'row' }} // Por defecto columna, en pantallas más grandes fila
-    spacing={2}
-    sx={{
-        width: "100%",
-        padding: 2,
-        flexWrap: "wrap", // Permite que se envuelvan las críticas en dispositivos grandes
-    }}
->
-    {/* Critica 1 */}
-    <Obracriticas
-        medio="La Gacetilla"
-        texto="Esta es la crítica del primer medio. Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero..."
-        nota="9,5"
-    />
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }} // Por defecto columna, en pantallas más grandes fila
+        spacing={2}
+        sx={{
+          width: "100%",
+          padding: 2,
+          flexWrap: "wrap", // Permite que se envuelvan las críticas en dispositivos grandes
+        }}
+      >
+        {/* Critica 1 */}
+        <Obracriticas
+          medio="La Gacetilla"
+          texto="Esta es la crítica del primer medio. Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero..."
+          nota="9,5"
+        />
 
-    {/* Critica 2 */}
-    <Obracriticas
-        medio="Otro medio"
-        texto="Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero..."
-        nota="8"
-    />
-</Stack>
+        {/* Critica 2 */}
+        <Obracriticas
+          medio="Otro medio"
+          texto="Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero..."
+          nota="8"
+        />
+      </Stack>
 
-{/* Botón para ver todas las críticas */}
-<Grid
-    container
-    direction="row"
-    sx={{
-        justifyContent: "space-around",
-        alignItems: "flex-start",
-        marginTop: 3,
-    }}
->
-    <Button variant="contained" size="large" sx={{ background: 'black', marginBottom: '40px' }}>
-        <h5><b>TODAS LAS CRÍTICAS</b></h5>
-    </Button>
-</Grid>
+      {/* Botón para ver todas las críticas */}
+      <Grid
+        container
+        direction="row"
+        sx={{
+          justifyContent: "space-around",
+          alignItems: "flex-start",
+          marginTop: 3,
+        }}
+      >
+        <Button variant="contained" size="large" sx={{ background: 'black', marginBottom: '40px' }}>
+          <h5><b>TODAS LAS CRÍTICAS</b></h5>
+        </Button>
+      </Grid>
 
 
 
