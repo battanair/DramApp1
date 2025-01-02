@@ -7,7 +7,7 @@ const Home = () => {
             <NavLink to="/obra/1" style={{ marginRight: '10px', textDecoration: 'none', color: 'blue' }}>
                 OBRA
             </NavLink>
-            <NavLink to="/persona" style={{ textDecoration: 'none', color: 'blue' }}>
+            <NavLink to="/persona/1" style={{ textDecoration: 'none', color: 'blue' }}>
                 PERSONA
             </NavLink>
         </>
