@@ -25,7 +25,6 @@ const Personaindex = ({nombrepersona, puestopersona}) => {
               borderRadius: '8px',
               marginBottom: '16px',
               width: '100%',
-              maxWidth: '150px',
               objectFit: 'cover',
             }}
           />

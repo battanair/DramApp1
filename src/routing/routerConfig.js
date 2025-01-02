@@ -14,7 +14,7 @@ export const routeConfig = [
     page: <Obra2 />,
   },{
     name: "Persona",
-    path: "/persona/",
+    path: "/persona/:id",
     page: <Persona />,
   },
  

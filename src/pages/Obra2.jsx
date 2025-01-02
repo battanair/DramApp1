@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import { useParams } from 'react-router';
+import { NavLink } from "react-router";
 
 import Personaindex from '../components/personaindex';
 import Imagenesobra from '../components/imagenesobra';
@@ -257,20 +258,27 @@ const Obra2 = () => {
 
           <Grid
             container
-            direction="row"
             spacing={4}
             sx={{
-              justifyContent: 'space-evenly',
-              alignItems: 'flex-start',
+              maxWidth: "85%", // Ancho máximo ajustado
+              margin: '0 auto', // Asegura que el contenedor esté centrado
               marginTop: 3,
             }}
           >
-
-            <Personaindex  nombrepersona="Actriz Actrizer" puestopersona="Personaje 1" />
-            <Personaindex  nombrepersona="Actor Actorez" puestopersona="Personaje 2" />
-            <Personaindex  nombrepersona="Actriz Actrizer" puestopersona="Personaje 3" />
-            <Personaindex  nombrepersona="Actor Actorez" puestopersona="Personaje 4" />
+            <Grid item xs={6} sm={3} md={3}>
+            <NavLink to="/persona" style={{ textDecoration: 'none'}} > <Personaindex nombrepersona="Actriz Actrizer" puestopersona="Personaje 1" />
+            </NavLink> </Grid>
+            <Grid item xs={6} sm={3} md={3}>
+              <Personaindex nombrepersona="Actor Actorez" puestopersona="Personaje 2" />
+            </Grid>
+            <Grid item xs={6} sm={3} md={3}>
+              <Personaindex nombrepersona="Actriz Actrizer" puestopersona="Personaje 3" />
+            </Grid>
+            <Grid item xs={6} sm={3} md={3}>
+              <Personaindex nombrepersona="Actor Actorez" puestopersona="Personaje 4" />
+            </Grid>
           </Grid>
+
           <Grid
 
             container
