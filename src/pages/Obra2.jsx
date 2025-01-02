@@ -266,7 +266,7 @@ const Obra2 = () => {
             }}
           >
             <Grid item xs={6} sm={3} md={3}>
-            <NavLink to="/persona" style={{ textDecoration: 'none'}} > <Personaindex nombrepersona="Actriz Actrizer" puestopersona="Personaje 1" />
+            <NavLink to="/persona/1" style={{ textDecoration: 'none'}} > <Personaindex nombrepersona="Actriz Actrizer" puestopersona="Personaje 1" />
             </NavLink> </Grid>
             <Grid item xs={6} sm={3} md={3}>
               <Personaindex nombrepersona="Actor Actorez" puestopersona="Personaje 2" />

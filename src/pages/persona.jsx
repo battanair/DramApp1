@@ -76,7 +76,7 @@ const Persona = () => {
                         <h5>ELENCO</h5>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Stack direction="horizontal" spacing={2}>
+                        <Stack direction="horizontal" spacing={2} alignItems="center">
                             <img
                                 src="https://picsum.photos/200/300"
                                 alt="Obra"
@@ -106,7 +106,7 @@ const Persona = () => {
                         <h5>ELENCO</h5>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Stack direction="horizontal" spacing={2}>
+                        <Stack direction="horizontal" spacing={2} alignItems="center">
                             <img
                                 src="https://picsum.photos/200/300"
                                 alt="Obra"
