@@ -10,11 +10,12 @@ import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import { useParams } from 'react-router';
 
-import Categoriaobra from '../components/indexobra';
 import Personaindex from '../components/personaindex';
 import Imagenesobra from '../components/imagenesobra';
 import { Premiosobra } from '../components/premiosobra';
 import { Obracriticas } from '../components/Obracriticas';
+import Item from '../components/item';
+
 
 import { obras_db, relaciones_db, personas_db } from '../components/database';
 
@@ -109,237 +110,267 @@ const Obra2 = () => {
 
     <><Grid container spacing={4} sx={{ paddingTop: 4 }}>
 
-    {/* Columna 1: Imagen */}
+      {/* Columna 1: Imagen */}
 
-    <Grid item xs={12} md={4}>
-      <Box sx={{ textAlign: 'center' }}>
-        <img
-          src="https://picsum.photos/200/300"
-          alt="Obra"
-          style={{ width: '100%', borderRadius: '8px' }} />
-      </Box>
-    </Grid>
+      <Grid item xs={12} md={4}>
+        <Box sx={{ textAlign: 'center' }}>
+          <img
+            src="https://picsum.photos/200/300"
+            alt="Obra"
+            style={{ width: '100%', borderRadius: '8px' }} />
+        </Box>
+      </Grid>
 
-    {/* Columna 2: Texto */}
-    <Grid item xs={12} md={8}>
-      {/* Componente Categoriaobra agregado encima del título con separación */}
-      <div className="linea">
-        <Rating name="half-rating" defaultValue={2} precision={1} />
-        <Categoriaobra categoria1="Teatro" categoria2="Comedia" nota="10" />
-      </div>
+      {/* Columna 2: Texto */}
+      <Grid item xs={12} md={8}>
+        {/* Componente Categoriaobra agregado encima del título con separación */}
+        <div className="linea">
+          <Rating name="half-rating" defaultValue={2} precision={1} />
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+              justifyContent: "flex-end",
+              alignItems: "center",
+              marginBottom: 2
+            }}
+          >
+            {obraData?.etiquetas_obra?.map((item, index) => (
+              <Item key={index}>{item}</Item>
+            ))}
 
-      {/* Título con el año en la misma línea */}
-      <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1, marginBottom: 1 }}>
-        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-        {obraData.nombre_obra}
+
+            <Item
+              sx={{
+                width: 40, // Ajusta el tamaño del círculo
+                height: 40,
+                borderRadius: "50%", // Hace el objeto redondo
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "lightgrey", // Fondo opcional
+                color: "black", // Color del texto opcional
+                fontWeight: "bold", // Opcional para destacar la nota
+              }}
+            >
+              {obraData.nota_obra}
+            </Item>
+          </Stack>
+        </div>
+
+        {/* Título con el año en la misma línea */}
+        <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1, marginBottom: 1 }}>
+          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+            {obraData.nombre_obra}
+          </Typography>
+          <Typography variant="h6" color="textSecondary" sx={{ fontSize: '1rem' }}>
+            {obraData.anio_obra}
+          </Typography>
+        </Box>
+
+        <Typography variant="body1" sx={{ fontWeight: 'bold', marginBottom: '8px' }}>
+          SHOWPRIME Y CENTRO DRAMÁTICO NACIONAL
         </Typography>
-        <Typography variant="h6" color="textSecondary" sx={{ fontSize: '1rem' }}>
-          {obraData.anio_obra}
+
+        <Typography variant="body2" paragraph>
+          {obraData.sinopsis_obra}
         </Typography>
-      </Box>
 
-      <Typography variant="body1" sx={{ fontWeight: 'bold', marginBottom: '8px' }}>
-        SHOWPRIME Y CENTRO DRAMÁTICO NACIONAL
-      </Typography>
-
-      <Typography variant="body2" paragraph>
-        {obraData.sinopsis_obra}
-      </Typography>
-
-      <Button variant="contained" sx={{ background: 'black', marginBottom: '40px' }} onClick={handleOpen}><h6><b>COMPRAR ENTRADAS</b></h6>
-      </Button>
+        <Button variant="contained" sx={{ background: 'black', marginBottom: '40px' }} onClick={handleOpen}><h6><b>COMPRAR ENTRADAS</b></h6>
+        </Button>
+      </Grid>
     </Grid>
-  </Grid>
 
 
       <><Box container sx={{ marginTop: 4 }}>
-    <h5><b>TEXTO Y DIRECCIÓN DE:</b></h5>
-    <Grid container spacing={2}>
-      {/* Columna 1: Personaindex alineado a la izquierda */}
-      <Grid item xs={12} md={6} container
-        direction="row"
-        sx={{
-          justifyContent: "flex-start",
-          alignItems: "center",
-        }}>
-        <Grid
-          container
-          direction="row"
-          alignItems="center"
-          sx={{ justifyContent: "flex-start" }} // Centra horizontalmente
-          spacing={2} // Espaciado entre elementos
-        >
-          <Personaindex nombrepersona={"Director Directorez"} puestopersona={"Director"} />
+        <h5><b>TEXTO Y DIRECCIÓN DE:</b></h5>
+        <Grid container spacing={2}>
+          {/* Columna 1: Personaindex alineado a la izquierda */}
+          <Grid item xs={12} md={6} container
+            direction="row"
+            sx={{
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}>
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              sx={{ justifyContent: "flex-start" }} // Centra horizontalmente
+              spacing={2} // Espaciado entre elementos
+            >
+              <Personaindex nombrepersona={"Director Directorez"} puestopersona={"Director"} />
+            </Grid>
+          </Grid>
+
+          {/* Columna 2: Video con iframe */}
+          <Grid item xs={12} md={6}>
+            <Box sx={{
+              position: 'relative',
+              paddingTop: '56.25%', // Mantener proporción 16:9
+              overflow: 'hidden',
+              borderRadius: '8px',
+            }}>
+              <iframe
+                src="https://www.youtube.com/embed/iwyiAHxZs7M?si=mq-U2bFnXzCVe72D"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }} />
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-
-      {/* Columna 2: Video con iframe */}
-      <Grid item xs={12} md={6}>
-        <Box sx={{
-          position: 'relative',
-          paddingTop: '56.25%', // Mantener proporción 16:9
-          overflow: 'hidden',
-          borderRadius: '8px',
-        }}>
-          <iframe
-            src="https://www.youtube.com/embed/iwyiAHxZs7M?si=mq-U2bFnXzCVe72D"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-            }} />
-        </Box>
-      </Grid>
-    </Grid>
-  </Box><Grid
-    container
-    sx={{
-      paddingTop: 4,
-      paddingBottom: 8,
-      textAlign: 'center',
-    }}
-    direction={'column'}
-  >
-      <Typography variant="h5" component="h5" sx={{ fontWeight: "bold", textAlign: "center" }}>
-        CRÍTICAS
-      </Typography>
-
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Typography>Original</Typography>
-        <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
-
-        <Typography>Actual</Typography>
-      </Stack>
-
-      <Grid
+      </Box><Grid
         container
-        direction="row"
         sx={{
-          justifyContent: 'space-evenly',
-          alignItems: 'flex-start',
-          marginTop: 3,
+          paddingTop: 4,
+          paddingBottom: 8,
+          textAlign: 'center',
         }}
+        direction={'column'}
       >
+          <Typography variant="h5" component="h5" sx={{ fontWeight: "bold", textAlign: "center" }}>
+            ELENCO
+          </Typography>
 
-        <Personaindex nombrepersona="Actriz Actrizer" puestopersona="Personaje 1" />
-        <Personaindex nombrepersona="Actor Actorez" puestopersona="Personaje 2" />
-        <Personaindex nombrepersona="Actriz Actrizer" puestopersona="Personaje 3" />
-        <Personaindex nombrepersona="Actor Actorez" puestopersona="Personaje 4" />
-      </Grid>
-      <Grid
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Typography>Original</Typography>
+            <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
 
-        container
-        direction="row"
-        sx={{
-          justifyContent: 'space-around',
-          alignItems: 'flex-start',
-          marginTop: 3,
-        }}
-      >
-        <Button
-          variant="contained"
-          size="large"
-          sx={{ background: 'black' }}
+            <Typography>Actual</Typography>
+          </Stack>
+
+          <Grid
+            container
+            direction="row"
+            spacing={4}
+            sx={{
+              justifyContent: 'space-evenly',
+              alignItems: 'flex-start',
+              marginTop: 3,
+            }}
+          >
+
+            <Personaindex  nombrepersona="Actriz Actrizer" puestopersona="Personaje 1" />
+            <Personaindex  nombrepersona="Actor Actorez" puestopersona="Personaje 2" />
+            <Personaindex  nombrepersona="Actriz Actrizer" puestopersona="Personaje 3" />
+            <Personaindex  nombrepersona="Actor Actorez" puestopersona="Personaje 4" />
+          </Grid>
+          <Grid
+
+            container
+            direction="row"
+            sx={{
+              justifyContent: 'space-around',
+              alignItems: 'flex-start',
+              marginTop: 3,
+            }}
+          >
+            <Button
+              variant="contained"
+              size="large"
+              sx={{ background: 'black' }}
+            >
+              <h5>
+                <b>TODO EL EQUIPO</b>
+              </h5>
+            </Button>
+          </Grid>
+        </Grid><Imagenesobra imagen1="https://picsum.photos/400/300?random=1" imagen2="https://picsum.photos/400/300?random=2" imagen3="https://picsum.photos/400/300?random=3" imagen4="https://picsum.photos/400/300?random=4" imagen5="https://picsum.photos/400/300?random=5" /><Stack
+          direction="column"
+          spacing={4}
+          sx={{
+            justifyContent: "flex-start",
+            alignItems: "center",
+            paddingTop: 5,
+            paddingBottom: 5,
+          }}
         >
-          <h5>
-            <b>TODO EL EQUIPO</b>
-          </h5>
-        </Button>
-      </Grid>
-    </Grid><Imagenesobra imagen1="https://picsum.photos/400/300?random=1" imagen2="https://picsum.photos/400/300?random=2" imagen3="https://picsum.photos/400/300?random=3" imagen4="https://picsum.photos/400/300?random=4" imagen5="https://picsum.photos/400/300?random=5" /><Stack
-      direction="column"
-      spacing={4}
-      sx={{
-        justifyContent: "flex-start",
-        alignItems: "center",
-        paddingTop: 5,
-        paddingBottom: 5,
-      }}
-    >
-      <Typography variant="h5" component="h5" sx={{ fontWeight: "bold" }}>
-        PREMIOS
-      </Typography>
+          <Typography variant="h5" component="h5" sx={{ fontWeight: "bold" }}>
+            PREMIOS
+          </Typography>
 
-      <Stack
-        direction={{ xs: "column", sm: "row" }} // Columnas en pantallas pequeñas, filas en grandes
-        spacing={2}
-        sx={{
-          justifyContent: { xs: "center", sm: "space-around" }, // Centrado en pequeñas
-          alignItems: "center", // Alineación vertical uniforme
-          width: "100%", // Asegura que ocupe todo el ancho disponible
-          paddingX: 2, // Margen horizontal en pantallas pequeñas
-        }}
-      >
-        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
-        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
-        <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
-      </Stack>
-    </Stack><Typography variant="h5" component="h5" sx={{ fontWeight: "bold", textAlign: "center" }}>
-      CRÍTICAS
-    </Typography><Stack
-      direction={{ xs: 'column', sm: 'row' }} // Por defecto columna, en pantallas más grandes fila
-      spacing={2}
-      sx={{
-        width: "100%",
-        padding: 2,
-        flexWrap: "wrap", // Permite que se envuelvan las críticas en dispositivos grandes
-      }}
-    >
-      {/* Critica 1 */}
-      <Obracriticas
-        medio="La Gacetilla"
-        texto="Esta es la crítica del primer medio. Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero..."
-        nota="9,5" />
+          <Stack
+            direction={{ xs: "column", sm: "row" }} // Columnas en pantallas pequeñas, filas en grandes
+            spacing={2}
+            sx={{
+              justifyContent: { xs: "center", sm: "space-around" }, // Centrado en pequeñas
+              alignItems: "center", // Alineación vertical uniforme
+              width: "100%", // Asegura que ocupe todo el ancho disponible
+              paddingX: 2, // Margen horizontal en pantallas pequeñas
+            }}
+          >
+            <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
+            <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
+            <Premiosobra premio="Premios MAX" year="2023" condecoracion="Mejor autoría" />
+          </Stack>
+        </Stack><Typography variant="h5" component="h5" sx={{ fontWeight: "bold", textAlign: "center" }}>
+          CRÍTICAS
+        </Typography><Stack
+          direction={{ xs: 'column', sm: 'row' }} // Por defecto columna, en pantallas más grandes fila
+          spacing={2}
+          sx={{
+            width: "100%",
+            padding: 2,
+            flexWrap: "wrap", // Permite que se envuelvan las críticas en dispositivos grandes
+          }}
+        >
+          {/* Critica 1 */}
+          <Obracriticas
+            medio="La Gacetilla"
+            texto="Esta es la crítica del primer medio. Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero..."
+            nota="9,5" />
 
-      {/* Critica 2 */}
-      <Obracriticas
-        medio="Otro medio"
-        texto="Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero..."
-        nota="8" />
-    </Stack></>
+          {/* Critica 2 */}
+          <Obracriticas
+            medio="Otro medio"
+            texto="Darío Duarte, hijo de uruguayos, es un dramaturgo que a sus 45 años se enfrenta a su primer estreno en la Sala Grande del Teatro María Guerrero..."
+            nota="8" />
+        </Stack></>
 
       {/* Botón para ver todas las críticas */}
       <><Grid
-    container
-    direction="row"
-    sx={{
-      justifyContent: "space-around",
-      alignItems: "flex-start",
-      marginTop: 3,
-    }}
-  >
-    <Button variant="contained" size="large" sx={{ background: 'black', marginBottom: '40px' }}>
-      <h5><b>TODAS LAS CRÍTICAS</b></h5>
-    </Button>
-  </Grid><Modal
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Comprar entradas
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Aquí irá una dara grid jeje
-        </Typography>
-      </Box>
-    </Modal></></>
+        container
+        direction="row"
+        sx={{
+          justifyContent: "space-around",
+          alignItems: "flex-start",
+          marginTop: 3,
+        }}
+      >
+        <Button variant="contained" size="large" sx={{ background: 'black', marginBottom: '40px' }}>
+          <h5><b>TODAS LAS CRÍTICAS</b></h5>
+        </Button>
+      </Grid><Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Comprar entradas
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Aquí irá una dara grid jeje
+            </Typography>
+          </Box>
+        </Modal></></>
   )
 }
 
