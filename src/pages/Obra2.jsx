@@ -260,7 +260,7 @@ const Obra2 = () => {
             container
             spacing={4}
             sx={{
-              maxWidth: "85%", // Ancho máximo ajustado
+              maxWidth: "100%", // Ancho máximo ajustado
               margin: '0 auto', // Asegura que el contenedor esté centrado
               marginTop: 3,
             }}

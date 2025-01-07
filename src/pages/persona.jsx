@@ -86,21 +86,21 @@ const Persona = () => {
                     container
                     spacing={4}
                     sx={{
-                        maxWidth: "85%", // Ancho máximo ajustado
+                        maxWidth: "100%", // Ancho máximo ajustado
                         margin: '0 auto', // Asegura que el contenedor esté centrado
                     }}
                 >
                     <Grid item xs={6} sm={3} md={3}>
-                        <NavLink to="/obra/1" style={{ textDecoration: 'none' }} > <Personaindex nombrepersona="Actriz Actrizer" puestopersona="Personaje 1" />
+                        <NavLink to="/obra/1" style={{ textDecoration: 'none' }} > <Personaindex nombrepersona="Obra 1" puestopersona="Personaje 1" />
                         </NavLink> </Grid>
                     <Grid item xs={6} sm={3} md={3}>
-                        <Personaindex nombrepersona="Actor Actorez" puestopersona="Personaje 2" />
+                        <Personaindex nombrepersona="Obra 2" puestopersona="Dirección" />
                     </Grid>
                     <Grid item xs={6} sm={3} md={3}>
-                        <Personaindex nombrepersona="Actriz Actrizer" puestopersona="Personaje 3" />
+                        <Personaindex nombrepersona="Obra con título mas largo" puestopersona="Personaje 3" />
                     </Grid>
                     <Grid item xs={6} sm={3} md={3}>
-                        <Personaindex nombrepersona="Actor Actorez" puestopersona="Personaje 4" />
+                        <Personaindex nombrepersona="Bueno hay que poner más obritas" puestopersona="Personaje 4" />
                     </Grid>
                 </Grid>
             </Grid>
