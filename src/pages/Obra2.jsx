@@ -109,7 +109,7 @@ const Obra2 = () => {
 
   return (
 
-    <><Grid container spacing={4} sx={{ paddingTop: 4 }}>
+    <><Grid container spacing={4} sx={{ paddingTop: 4, paddingLeft: 4}}>
 
       {/* Columna 1: Imagen */}
 
@@ -183,7 +183,7 @@ const Obra2 = () => {
     </Grid>
 
 
-      <><Box container sx={{ marginTop: 4 }}>
+      <><Box container sx={{ marginTop: 4, paddingLeft: 3 }}>
         <h5><b>TEXTO Y DIRECCIÓN DE:</b></h5>
         <Grid container spacing={2}>
           {/* Columna 1: Personaindex alineado a la izquierda */}

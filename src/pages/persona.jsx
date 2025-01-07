@@ -38,7 +38,7 @@ const Persona = () => {
 
     return (
         <>
-            <Grid container spacing={4} sx={{ paddingTop: 4, paddingBottom: 4 }}>
+            <Grid container spacing={4} sx={{ paddingTop: 4, paddingBottom: 4, paddingLeft: 4}}>
                 {/* Columna 1: Imagen */}
                 <Grid item xs={12} md={4}>
                     <Box sx={{ textAlign: 'center' }}>

@@ -16,7 +16,7 @@ const App = () => (
     
     <Box sx={{background: 'lightgrey'}}>
     <Navbar />
-     <Container maxWidth="md" sx={{background: 'white', marginTop: '50px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)' }}>
+     <Container maxWidth="md" sx={{background: 'white', marginTop: '50px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', paddingLeft: 3, paddingRight:3 }}>
     
      <Routes>
         {routeConfig.map((item) => {
